@@ -1,0 +1,73 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+	<title>Calendar</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/jw-jqm-cal.css" rel="stylesheet">
+    <link href="../css/jquery.mobile-1.2.0.min.css" rel="stylesheet">
+	<style type="text/css">
+		/* Prevent copy paste for all elements except text fields */
+		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+		input, textarea  { -webkit-user-select:text; }
+	</style>    
+    <script>
+        var title = "Calendar";
+    </script>
+	<script src='intelxdk.js'></script>
+	<script type="text/javascript">
+		/* Intel native bridge is available */
+		var onDeviceReady=function(){
+		//hide splash screen
+		intel.xdk.device.hideSplashScreen();
+		};
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+	</script>
+    <script src="../js/storageHelper.js"></script>
+    <script src="../js/jquery-1.8.2.min.js"></script>
+    <script src="../js/jquery.mobile-1.2.0.min.js"></script>
+    <script src="../js/bind.polyfill.js"></script>
+    <script src="../js/Tocca.js"></script>
+    <script src="../js/jw-jqm-cal.js"></script>
+    <script src="../js/scriptCalendar.js"></script>
+</head>
+<body>
+    <section class="colorBase">
+        <article class="rectangleBase1"></article>
+        <article class="rectangleBase2"></article>
+        <article class="rectangleBase3"></article>
+        <article class="rectangleBase4"></article>
+    </section>
+    <section class="message">
+        <h1></h1>
+        <p></p>
+        <button type="button" class="buttonMessage"></button>
+    </section>
+	<header>
+        <p>pico</p>
+        <p>y</p>
+        <p>placa</p>
+    </header>
+    <section id="body">
+        <div data-role="page" id="view-calendar" data-theme="c">
+            <div data-role="header">
+                <h1>Calendario</h1>
+            </div>
+            <div data-role="content">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </section>
+    <nav>
+        <section class="menuButton"></section>
+        <ul>
+            <li class="home"><a rel="external" href="../index.html">Home</a></li>
+            <li class="active calendar"><a href="javascript:none()">Calendario</a></li>
+            <li class="about"><a rel="external" href="../views/about.html">About</a></li>
+            <!--<li class="rateUs"><a href="views/rateus.html">Calificanos</a></li>-->
+        </ul>
+    </nav>
+    <script src="../js/script.js"></script>
+</body>
+</html>
