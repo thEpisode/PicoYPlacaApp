@@ -89,9 +89,18 @@
     </header>
 
     <!-- Services Section -->
-    <section id="showIt">
+    <section id="showIt" class="col-sm-5 col-md-offset-5">
         <div class="container">
-            
+            <section id="citySelect" style="position: relative;float:left">
+                <li role="presentation" class="dropdown">
+                    <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Selecciona tu ciudad
+                      <span class="caret"></span>
+                    </a>
+                    <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4"></ul>
+                </li>
+            </section>
+            <section id="placaInput" style="position: relative;float:left"><p>Ingrese su placa</p></section>
         </div>
     </section>
 
@@ -508,25 +517,32 @@
             </div>
         </div>
     </div>
+    <section id="scripts">
+        <!-- jQuery Version 1.11.0 -->
+        <script src="js/jquery-1.11.0.js"></script>
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        <!-- Engine JavaScript -->
+        <script src="../Engine/script.js"></script>
+        <script>
+            PicoYPlacaEngine.init('WebApp');
+        </script>
 
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="js/classie.js"></script>
+        <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+        <!-- Contact Form JavaScript -->
+        <script src="js/jqBootstrapValidation.js"></script>
+        <script src="js/contact_me.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="js/agency.js"></script>
-
+        <!-- Custom Theme JavaScript -->
+        <script src="js/agency.js"></script>
+    </section>
+    
 </body>
 
 </html>

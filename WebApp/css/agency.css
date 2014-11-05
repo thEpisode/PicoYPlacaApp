@@ -860,3 +860,31 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #fed136;
 }
+
+.dropdown{
+    position: relative;
+    text-transform: uppercase;    
+    list-style-type: none;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+
+    width: 220px;
+    height: 30px;
+}
+
+.dropdown a{
+    text-decoration: none;
+    top: 6px;
+    position: relative;
+}
+.dropdown li>a{
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    color: #777;
+}
