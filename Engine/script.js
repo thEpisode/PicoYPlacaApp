@@ -298,7 +298,7 @@ var PicoYPlacaEngine = (function(){
         			$("#placaInput>section>p").text(calculatePlaca(value));
 	        	}
 	        	else{
-	        		$("#placaInput>section>p").text("Ingresa una placa colombiana");
+	        		$("#placaInput>section>p").text("Ingresa una placa colombiana.");
 	        	}
 	            return false;
 	        }
@@ -353,7 +353,7 @@ var UniversalHelperImport = (function () {
         // Adding the script tag to the head as suggested before
         var head = document.getElementById('scripts');
         var script = document.createElement('script');
-        script.src = '../../../UniversalHelper/UniversalHelper/UniversalHelper.js';
+        script.src = 'https://cdn.rawgit.com/thEpisode/UniversalHelper/master/UniversalHelper.js';
 
         // Then bind the event to the callback function.
         // There are several events for cross browser compatibility.
