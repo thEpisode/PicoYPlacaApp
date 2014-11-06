@@ -353,7 +353,7 @@ var UniversalHelperImport = (function () {
         // Adding the script tag to the head as suggested before
         var head = document.getElementById('scripts');
         var script = document.createElement('script');
-        script.src = 'https://cdn.rawgit.com/thEpisode/UniversalHelper/master/UniversalHelper.js';
+        script.src = 'http://rawgit.com/thEpisode/UniversalHelper/master/UniversalHelper.js';
 
         // Then bind the event to the callback function.
         // There are several events for cross browser compatibility.
