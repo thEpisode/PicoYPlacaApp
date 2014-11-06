@@ -278,6 +278,59 @@ var PicoYPlacaEngine = (function(){
 		UniversalHelper.slideIn("#placaInput");
 	}
 
+	this.enterPress = function (sender, e) {
+        //console.log(e.value.length);
+        var value = e.value.toUpperCase();
+        if(value.length == 6){
+        	if(UniversalHelper.validateRegularExpression("([A-Z]{3}[0-9]{3})", value)){
+        		$("#placaInput>section>p").text(calculatePlaca(value));
+        	}
+        	else{
+        		$("#placaInput>section>p").text("Ingresa una placa colombiana");
+        	}
+        }
+        else if(value.length > 6){
+        	return false;
+        }
+        else{
+        	if (sender.keyCode == 13) { // Enter
+	            if(UniversalHelper.validateRegularExpression("([A-Z]{3}[0-9]{3})", value)){
+        			$("#placaInput>section>p").text(calculatePlaca(value));
+	        	}
+	        	else{
+	        		$("#placaInput>section>p").text("Ingresa una placa colombiana");
+	        	}
+	            return false;
+	        }
+	        else if (sender.keyCode == 8) { // Backspace
+	            if (e.value.length < 6) {
+	                $("#placaInput>section>p").text("");
+	            }
+	        }
+	        
+        }
+    }
+
+    function calculatePlaca(placa){
+	    var num = placa.substring(5,6);
+	    
+	    var date = new Date();
+	    var dayOfMonth = date.getDate();
+	    	    
+	    if(date.getDay() != 0 && date.getDay() != 5){
+	        if(num%2==0 && dayOfMonth%2==0){
+	            return "Hoy tiene pico y placa";
+	        }
+	        else if(num%2!=0 && dayOfMonth%2!=0){
+	            return "Hoy tiene pico y placa";
+	        }
+	        else{
+	            return "Hoy no tiene pico y placa";
+	        }
+	    }
+	    return "Hoy no tiene pico y placa";
+	}
+
 	/// Initialize all components for WebApps
 	function InitializeWebAppComponents(){
 		UniversalHelperImport.init();

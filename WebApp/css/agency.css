@@ -888,3 +888,20 @@ body {
     text-transform: none;
     color: #777;
 }
+
+.inputPlaca{
+    text-align: center;
+    padding: 0px;
+}
+
+.inputPlaca>label{    
+    font-size: 21px;
+}
+
+.inputPlaca>input{
+    height: 47px;
+    width: 185px;
+    text-align: center;
+    font-size: 22px;
+    text-transform:uppercase;
+}

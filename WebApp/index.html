@@ -88,9 +88,9 @@
         </div>
     </header>
 
-    <!-- Services Section -->
-    <section id="showIt" class="col-sm-5 col-md-offset-5">
-        <div class="container">
+    <!-- Show it Section -->
+    <section id="showIt">
+        <div class="container" style="margin-left:auto;margin-right:auto;width:300px;">
             <section id="citySelect" style="position: relative;float:left">
                 <li role="presentation" class="dropdown">
                     <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,7 +100,14 @@
                     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4"></ul>
                 </li>
             </section>
-            <section id="placaInput" style="position: relative;float:left"><p>Ingrese su placa</p></section>
+            <section id="placaInput" style="position: relative;float:left">
+                <section class="inputPlaca">
+                    <label for="placaInput">Ingrese su placa</label>
+                    <br><br>
+                    <input type="text" value="" placeholder="XXX000" name="placaInput" id="placaInput" maxlength="6" onkeyup="return PicoYPlacaEngine.enterPress(event, this)">
+                    <p></p>
+                </section>
+            </section>
         </div>
     </section>
 
