@@ -1,6 +1,7 @@
 var PicoYPlacaEngine = (function(){
 
 	var picoYPlaca= [];
+	var cityId = null;
 
 	this.init = function(agent){
 		if (typeof jQuery == 'undefined') {  
@@ -266,7 +267,7 @@ var PicoYPlacaEngine = (function(){
 		InitializeWebAppComponents();
 
 		$.each(this.picoYPlaca, function(key, value){
-			var html = '<li role="presentation"><a id="city-' + value.Id + '" role="menuitem" tabindex="-1" onclick="javascript:PicoYPlacaEngine.cityOptionClicked(' + key + ', \'#city-' + value.Id + '\')" style="cursor:pointer;">' + value.City + '</a></li>';
+			var html = '<li role="presentation"><a id="city-' + value.Id + '" role="menuitem" tabindex="-1" onclick="javascript:PicoYPlacaEngine.cityOptionClicked(' + value.Id + ', \'#city-' + value.Id + '\')" style="cursor:pointer;">' + value.City + '</a></li>';
 
 			$("#menu1").append(html);
 		});
@@ -274,8 +275,11 @@ var PicoYPlacaEngine = (function(){
 
 	this.cityOptionClicked = function(key, selector){
 		
-		UniversalHelper.slideOut("#citySelect");
-		UniversalHelper.slideIn("#placaInput");
+		cityId = key;
+
+		UniversalHelper.slideOut("#citySelectBox");
+		UniversalHelper.slideIn("#placaInputBox");
+
 	}
 
 	this.enterPress = function (sender, e) {
@@ -283,10 +287,10 @@ var PicoYPlacaEngine = (function(){
         var value = e.value.toUpperCase();
         if(value.length == 6){
         	if(UniversalHelper.validateRegularExpression("([A-Z]{3}[0-9]{3})", value)){
-        		$("#placaInput>section>p").text(calculatePlaca(value));
+        		$("#placaInputBox>section>p").text(calculatePlaca(value));
         	}
         	else{
-        		$("#placaInput>section>p").text("Ingresa una placa colombiana");
+        		$("#placaInputBox>section>p").text("Ingresa una placa colombiana");
         	}
         }
         else if(value.length > 6){
@@ -295,16 +299,16 @@ var PicoYPlacaEngine = (function(){
         else{
         	if (sender.keyCode == 13) { // Enter
 	            if(UniversalHelper.validateRegularExpression("([A-Z]{3}[0-9]{3})", value)){
-        			$("#placaInput>section>p").text(calculatePlaca(value));
+        			$("#placaInputBox>section>p").text(calculatePlaca(value));
 	        	}
 	        	else{
-	        		$("#placaInput>section>p").text("Ingresa una placa colombiana.");
+	        		$("#placaInputBox>section>p").text("Ingresa una placa colombiana.");
 	        	}
 	            return false;
 	        }
 	        else if (sender.keyCode == 8) { // Backspace
 	            if (e.value.length < 6) {
-	                $("#placaInput>section>p").text("");
+	                $("#placaInputBox>section>p").text("");
 	            }
 	        }
 	        
@@ -312,16 +316,47 @@ var PicoYPlacaEngine = (function(){
     }
 
     function calculatePlaca(placa){
-	    var num = placa.substring(5,6);
-	    
-	    var date = new Date();
+    	if(cityId != null){
+		    var lastNum = placa.substring(5,6);
+
+		    switch(cityId){
+		    	case 1:
+		    		return bogotaAlgorithm(lastNum);
+		    		break;
+		    	case 2:
+		    		return colombianCityAlgorithm(lastNum, 2);
+		    		break;
+		    	case 3:
+		    		return colombianCityAlgorithm(lastNum, 3);
+		    		break;
+		    	case 4:
+		    		return colombianCityAlgorithm(lastNum, 4);
+		    		break;
+		    	case 5:
+		    		return colombianCityAlgorithm(lastNum, 5);
+		    		break;
+		    	case 6:
+		    		return colombianCityAlgorithm(lastNum, 6);
+		    		break;
+		    	case 7:
+		    		return colombianCityAlgorithm(lastNum, 7);
+		    		break;
+		    }
+		}
+		else{
+			return "Ha ocurrido un error, por favor reintente."
+		}
+	}
+
+	function bogotaAlgorithm(placa){
+		var date = new Date();
 	    var dayOfMonth = date.getDate();
 	    	    
 	    if(date.getDay() != 0 && date.getDay() != 5){
-	        if(num%2==0 && dayOfMonth%2==0){
+	        if(placa % 2 == 0 && dayOfMonth % 2 == 0){
 	            return "Hoy tiene pico y placa";
 	        }
-	        else if(num%2!=0 && dayOfMonth%2!=0){
+	        else if(placa % 2 != 0 && dayOfMonth % 2 != 0){
 	            return "Hoy tiene pico y placa";
 	        }
 	        else{
@@ -329,6 +364,68 @@ var PicoYPlacaEngine = (function(){
 	        }
 	    }
 	    return "Hoy no tiene pico y placa";
+	}
+
+	function colombianCityAlgorithm(placa, idCity){
+		var date = new Date();
+		var today = date.getDay();
+
+		var city = getCity(idCity);
+
+		if(city != null){
+			switch(today){
+				case 1:
+					return validateRule(city, placa, 0);
+					break;
+				case 2:
+					return validateRule(city, placa, 1);
+					break;
+				case 3:
+					return validateRule(city, placa, 2);
+					break;
+				case 4:
+					return validateRule(city, placa, 3);
+					break;
+				case 5:
+					return validateRule(city, placa, 4);
+					break;
+			}
+		}
+		else{
+
+			return "Ha ocurrido un error catastrófico, estamos trabajando para resolver este problema.";
+		}
+	}
+
+	function validateRule(city, placa, keyRule){
+		var dataRules = '', response = 'Hoy no tiene pico y placa';
+		$.each(city.Rules[keyRule], function(key, data){
+			dataRules = data;
+		});
+
+		var placaRules = dataRules.split('-');
+
+		$.each(placaRules, function(key, value){
+			if(parseInt(placa) == parseInt(value)){
+				response = 'Hoy tiene pico y placa';
+				return false;
+			}
+		});
+
+		return response;
+	}
+
+	function getCity(idCity){
+		var city = $.grep(this.picoYPlaca, function(e){ return e.Id == idCity; });
+		if (city.length == 0) {
+		  return null;
+		}
+		else if (city.length == 1) {
+		  return city[0];
+		}
+		else {
+		  return null;
+		}
 	}
 
 	/// Initialize all components for WebApps
@@ -367,7 +464,7 @@ var UniversalHelperImport = (function () {
     var callback = function () {
         console.log('UniversalHelper script imported successfully.');
 
-        UniversalHelper.hideElements(["#placaInput"]);
+        UniversalHelper.hideElements(["#placaInputBox"]);
     };
 
     return (this);
