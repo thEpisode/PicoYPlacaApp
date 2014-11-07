@@ -27,8 +27,6 @@ var PicoYPlacaEngine = (function(){
 		    	throw internalException;
 			}
 		}
-
-		
 	};
 
 	function InternalException(message) {
@@ -273,13 +271,11 @@ var PicoYPlacaEngine = (function(){
 		});
 	}
 
-	this.cityOptionClicked = function(key, selector){
-		
+	this.cityOptionClicked = function(key, selector){		
 		cityId = key;
 
 		UniversalHelper.slideOut("#citySelectBox");
 		UniversalHelper.slideIn("#placaInputBox");
-
 	}
 
 	this.enterPress = function (sender, e) {
@@ -431,8 +427,6 @@ var PicoYPlacaEngine = (function(){
 	/// Initialize all components for WebApps
 	function InitializeWebAppComponents(){
 		UniversalHelperImport.init();
-
-		
 	}
 
 	function MobileAppCore(){
