@@ -278,6 +278,19 @@ var PicoYPlacaEngine = (function(){
 		UniversalHelper.slideIn("#placaInputBox");
 	}
 
+	this.resetEngine = function(){
+		UniversalHelper.slideOut("#placaInputBox");
+		UniversalHelper.slideIn("#citySelectBox");
+
+		$("#placaInputBox>section>p").text("\u00A0");
+		$("#placaInputBox>section>input").val("");
+	}
+
+	this.showCalender = function(){
+		document.getElementById('light').style.display='block';
+		document.getElementById('fade').style.display='block';
+	}
+
 	this.enterPress = function (sender, e) {
         //console.log(e.value.length);
         var value = e.value.toUpperCase();
@@ -304,7 +317,7 @@ var PicoYPlacaEngine = (function(){
 	        }
 	        else if (sender.keyCode == 8) { // Backspace
 	            if (e.value.length < 6) {
-	                $("#placaInputBox>section>p").text("");
+	                $("#placaInputBox>section>p").text("\u00A0");
 	            }
 	        }
 	        

@@ -17,6 +17,9 @@
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
 
+    <!-- Regal Calendar -->
+    <link href="css/RegalCalendar.css" rel="stylesheet"/>
+
     <!-- Custom Fonts -->
     <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -89,23 +92,41 @@
     </header>
 
     <!-- Show it Section -->
-    <section id="showIt">
-        <div class="container" style="margin-left:auto;margin-right:auto;width:300px;">
-            <section id="citySelectBox" style="position: relative;float:left">
+    <section id="showIt" style="padding-top:0;">
+        <div id="fade" class="black_overlay"></div>
+        <div class="container" style="margin-left:auto;margin-right:auto;width:33%;height: 380px;">
+            <section id="citySelectBox" style="position: relative;float: left;padding-left: 25%;">
                 <li role="presentation" class="dropdown">
-                    <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#000000;left:10px;">
                       Selecciona tu ciudad
                       <span class="caret"></span>
                     </a>
                     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4"></ul>
                 </li>
             </section>
-            <section id="placaInputBox" style="position: relative;float:left">
+            <section id="placaInputBox" style="position: relative;width: 100%;display: none;">
                 <section class="inputPlaca">
                     <label for="placaInput">Ingrese su placa</label>
                     <br><br>
                     <input type="text" value="" placeholder="XXX000" name="placaInput" id="placaInput" maxlength="6" onkeyup="return PicoYPlacaEngine.enterPress(event, this)">
-                    <p></p>
+                    <p>&nbsp;</p>
+                    <article>
+                        <a class="placaButton" href="javascript:void(0)" onclick="javascript:PicoYPlacaEngine.resetEngine()">Escribir otra placa</a>
+                        <a class="placaButton" href="javascript:void(0)" onclick="javascript:PicoYPlacaEngine.showCalender()">Ver calendario</a>
+                    </article>                   
+
+<div id="light" class="white_content">
+    <div id="cyanCalendar" class="regalcalendar" style="margin-top: 20px; position: relative; margin-bottom: 25px;">
+        <span class="event" data-title="Event title" data-location="California"
+                data-date="20/04/2014" data-time="16:00" data-icon="Ghost" data-customText="$10" >
+                        Event text
+        </span>
+    </div>
+    <a class="placaButton" href="javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close
+    </a>
+</div>
+
+
                 </section>
             </section>
         </div>
@@ -527,6 +548,7 @@
     <section id="scripts">
         <!-- jQuery Version 1.11.0 -->
         <script src="js/jquery-1.11.0.js"></script>
+        <script src="js/jqueryandregal.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
@@ -535,6 +557,12 @@
         <script src="../Engine/script.js"></script>
         <script>
             PicoYPlacaEngine.init('WebApp');
+
+            $(document).ready(function () {                
+                $('#cyanCalendar').RegalCalendar({ theme: 'blue', enter: 'fadeInLeft', exit: 'bounceOutDown', animation: 'fadeInLeft' });
+            });
+
+
         </script>
 
         <!-- Plugin JavaScript -->
